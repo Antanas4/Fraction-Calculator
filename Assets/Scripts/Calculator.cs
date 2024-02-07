@@ -42,15 +42,17 @@ public class Calculator : MonoBehaviour
     //Function to get input and store the values
     public void NumberInput(string value)
     {
-        if (activeNumeratorField && !activeDenominatorField)
+        if (activeNumeratorField && !activeDenominatorField && numeratorInputField.text.Length < 7)
         {
             numeratorInputField.text = numeratorInputField.text + value;
             numerator = int.Parse(numeratorInputField.text);
+            Debug.Log($"numerator length: {numeratorInputField.text.Length}");
         }
-        else if (activeDenominatorField && !activeNumeratorField)
+        else if (activeDenominatorField && !activeNumeratorField && denominatorInputField.text.Length < 7)
         {
             denominatorInputField.text = denominatorInputField.text + value;
             denominator = int.Parse(denominatorInputField.text);
+            Debug.Log($"denominator length: {denominatorInputField.text.Length}");
         }
     }
     //Function to perform the operation and calculate the ongoing result
@@ -111,8 +113,8 @@ public class Calculator : MonoBehaviour
     {
         numerator = 0;
         denominator = 0;
-        numeratorInputField.text = null;
-        denominatorInputField.text = null;
+        numeratorInputField.text = "";
+        denominatorInputField.text = "";
         activeNumeratorField = false;
         activeDenominatorField = false;
     }
